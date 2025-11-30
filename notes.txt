@@ -1,0 +1,21 @@
+Build a complete .NET Core 8+ Microservice using Clean Architecture.
+Include:
+API Layer, Application Layer, Domain Layer, Infrastructure Layer, EF Core, Azure SQL integration, Repository pattern, Unit of Work, CQRS with MediatR, DTOs, FluentValidation, Global Exception Handling middleware, Logging (Serilog), Polly retry policy for DB resilience, Dockerfile, docker-compose (API + Azure SQL Edge), Swagger, and Proper Folder Structure.
+
+Solution name must be REZsupport, folder structures should be 
+Rezsupport
+   Services
+      Product.API
+      Product.Application
+      Product.Core
+      Product.Infrastructure
+
+
+dotnet new sln -n REZsupport
+mkdir -p REZsupport/Services
+PS C:\backup_Mini_PC\Projects\DemoMcr> cd REZsupport/Services; dotnet new webapi -n Product.API -f net8.0
+The template "ASP.NET Core Web API" was created successfully.
+PS C:\backup_Mini_PC\Projects\DemoMcr\REZsupport\Services> dotnet new classlib -n Product.Core -f net8.0
+The template "Class Library" was created successfully.
+PS C:\backup_Mini_PC\Projects\DemoMcr\REZsupport\Services> dotnet new classlib -n Product.Application -f net8.0
+The template "Class Library" was created successfully.
