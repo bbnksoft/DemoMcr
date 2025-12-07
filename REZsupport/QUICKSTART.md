@@ -15,11 +15,13 @@ docker-compose up -d
 ### Option 2: Local Development
 
 1. Start SQL Server:
+
 ```bash
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong@Passw0rd" -p 1433:1433 -d mcr.microsoft.com/azure-sql-edge
 ```
 
 2. Run the API:
+
 ```bash
 cd REZsupport/Services/Product.API
 dotnet run
@@ -30,26 +32,31 @@ dotnet run
 ## Testing the API
 
 ### Create Product
+
 ```bash
 curl -X POST "http://localhost:5000/api/products" -H "Content-Type: application/json" -d "{\"name\":\"Test Product\",\"description\":\"Test Description\",\"price\":29.99,\"stockQuantity\":100,\"sku\":\"TEST001\",\"category\":\"Electronics\",\"isActive\":true}"
 ```
 
 ### Get All Products
+
 ```bash
 curl -X GET "http://localhost:5000/api/products"
 ```
 
 ### Get Product by ID
+
 ```bash
 curl -X GET "http://localhost:5000/api/products/{id}"
 ```
 
 ### Update Product
+
 ```bash
 curl -X PUT "http://localhost:5000/api/products/{id}" -H "Content-Type: application/json" -d "{\"name\":\"Updated Product\",\"description\":\"Updated Description\",\"price\":39.99,\"stockQuantity\":50,\"sku\":\"TEST001\",\"category\":\"Electronics\",\"isActive\":true}"
 ```
 
 ### Delete Product
+
 ```bash
 curl -X DELETE "http://localhost:5000/api/products/{id}"
 ```
@@ -59,11 +66,13 @@ curl -X DELETE "http://localhost:5000/api/products/{id}"
 ### Clean Architecture Layers
 
 1. **Product.Core (Domain Layer)**
+
    - Entities: `Product`, `BaseEntity`
    - Interfaces: `IRepository`, `IUnitOfWork`
    - Exceptions: `NotFoundException`, `ValidationException`
 
 2. **Product.Application (Application Layer)**
+
    - CQRS Commands: `CreateProduct`, `UpdateProduct`, `DeleteProduct`
    - CQRS Queries: `GetProductById`, `GetAllProducts`
    - DTOs: `ProductDto`, `CreateProductDto`, `UpdateProductDto`
@@ -71,6 +80,7 @@ curl -X DELETE "http://localhost:5000/api/products/{id}"
    - Behaviors: `ValidationBehavior` for MediatR pipeline
 
 3. **Product.Infrastructure (Infrastructure Layer)**
+
    - `ApplicationDbContext`: EF Core DbContext
    - `Repository<T>`: Generic repository implementation
    - `UnitOfWork`: Unit of Work pattern
@@ -118,10 +128,12 @@ Migrations are automatically applied on application startup. The initial migrati
 ## Logging
 
 Logs are written to:
+
 - Console (for Docker/development)
 - `logs/log-YYYYMMDD.txt` (daily rolling files)
 
 Log levels:
+
 - Information: General application flow
 - Warning: Potential issues
 - Error: Exceptions and errors
@@ -138,16 +150,19 @@ Configure via `appsettings.json` or environment variables:
 ## Troubleshooting
 
 ### SQL Server Connection Issues
+
 - Ensure SQL Server is running: `docker ps`
 - Check connection string in appsettings.json
 - Verify firewall settings for port 1433
 
 ### Migration Issues
+
 - Migrations are applied automatically on startup
 - Check logs for migration errors
 - Manually apply: `dotnet ef database update --startup-project ../Product.API`
 
 ### Build Errors
+
 - Clean and rebuild: `dotnet clean && dotnet build`
 - Restore packages: `dotnet restore`
 - Check .NET 8.0 SDK is installed: `dotnet --version`
@@ -164,6 +179,7 @@ Configure via `appsettings.json` or environment variables:
 ## Security Considerations
 
 ⚠️ **Important for Production:**
+
 - Change default SQL Server password
 - Enable authentication/authorization
 - Configure CORS properly

@@ -42,6 +42,7 @@ The API will be available at: http://localhost:5000/swagger
 #### Run Locally
 
 1. Start SQL Server (or use Docker):
+
 ```bash
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong@Passw0rd" -p 1433:1433 -d mcr.microsoft.com/azure-sql-edge
 ```
@@ -49,6 +50,7 @@ docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong@Passw0rd" -p 1433:1433 
 2. Update connection string in `appsettings.json`
 
 3. Run the API:
+
 ```bash
 cd REZsupport/Services/Product.API
 dotnet run
