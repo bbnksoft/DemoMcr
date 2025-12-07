@@ -5,6 +5,7 @@ obj/
 *.log
 logs/
 .vs/
+../vs/
 .vscode/
 *.swp
 *.bak
