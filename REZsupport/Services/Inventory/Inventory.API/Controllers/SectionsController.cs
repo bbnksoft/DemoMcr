@@ -1,11 +1,8 @@
+using Inventory.Application.Features.Sections.Commands;
+using Inventory.Application.Features.Sections.Queries;
+using Inventory.Application.Responses.Sections;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Inventory.Application.DTOs;
-using Inventory.Application.Features.Sections.Commands.CreateSection;
-using Inventory.Application.Features.Sections.Commands.UpdateSection;
-using Inventory.Application.Features.Sections.Commands.DeleteSection;
-using Inventory.Application.Features.Sections.Queries.GetSectionById;
-using Inventory.Application.Features.Sections.Queries.GetAllSections;
 
 namespace Inventory.API.Controllers;
 
@@ -23,21 +20,21 @@ public class SectionsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<SectionDto>>> GetAll()
+    public async Task<ActionResult<IEnumerable<SectionResponse>>> GetAll()
     {
         var sections = await _mediator.Send(new GetAllSectionsQuery());
         return Ok(sections);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<SectionDto>> GetById(Guid id)
+    public async Task<ActionResult<SectionResponse>> GetById(Guid id)
     {
         var section = await _mediator.Send(new GetSectionByIdQuery(id));
         return Ok(section);
     }
 
     [HttpPost]
-    public async Task<ActionResult<SectionDto>> Create([FromBody] CreateSectionDto dto)
+    public async Task<ActionResult<SectionResponse>> Create([FromBody] CreateSectionResponse dto)
     {
         var command = new CreateSectionCommand
         {
@@ -55,7 +52,7 @@ public class SectionsController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<SectionDto>> Update(Guid id, [FromBody] UpdateSectionDto dto)
+    public async Task<ActionResult<SectionResponse>> Update(Guid id, [FromBody] UpdateSectionResponse dto)
     {
         var command = new UpdateSectionCommand
         {

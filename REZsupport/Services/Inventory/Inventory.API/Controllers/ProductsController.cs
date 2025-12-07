@@ -1,11 +1,8 @@
+using Inventory.Application.Features.Products.Commands;
+using Inventory.Application.Features.Products.Queries;
+using Inventory.Application.Responses.Products;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Inventory.Application.DTOs;
-using Inventory.Application.Features.Products.Commands.CreateProduct;
-using Inventory.Application.Features.Products.Commands.UpdateProduct;
-using Inventory.Application.Features.Products.Commands.DeleteProduct;
-using Inventory.Application.Features.Products.Queries.GetProductById;
-using Inventory.Application.Features.Products.Queries.GetAllProducts;
 
 namespace Inventory.API.Controllers;
 
@@ -23,21 +20,21 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ProductDto>>> GetAll()
+    public async Task<ActionResult<IEnumerable<ProductResponse>>> GetAll()
     {
         var products = await _mediator.Send(new GetAllProductsQuery());
         return Ok(products);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<ProductDto>> GetById(Guid id)
+    public async Task<ActionResult<ProductResponse>> GetById(Guid id)
     {
         var product = await _mediator.Send(new GetProductByIdQuery(id));
         return Ok(product);
     }
 
     [HttpPost]
-    public async Task<ActionResult<ProductDto>> Create([FromBody] CreateProductDto dto)
+    public async Task<ActionResult<ProductResponse>> Create([FromBody] CreateProductResponse dto)
     {
         var command = new CreateProductCommand
         {
@@ -56,7 +53,7 @@ public class ProductsController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<ProductDto>> Update(Guid id, [FromBody] UpdateProductDto dto)
+    public async Task<ActionResult<ProductResponse>> Update(Guid id, [FromBody] UpdateProductResponse dto)
     {
         var command = new UpdateProductCommand
         {

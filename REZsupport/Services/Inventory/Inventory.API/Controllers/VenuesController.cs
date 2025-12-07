@@ -1,11 +1,8 @@
+using Inventory.Application.Features.Venues.Commands;
+using Inventory.Application.Features.Venues.Queries;
+using Inventory.Application.Responses.Venues;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Inventory.Application.DTOs;
-using Inventory.Application.Features.Venues.Commands.CreateVenue;
-using Inventory.Application.Features.Venues.Commands.UpdateVenue;
-using Inventory.Application.Features.Venues.Commands.DeleteVenue;
-using Inventory.Application.Features.Venues.Queries.GetVenueById;
-using Inventory.Application.Features.Venues.Queries.GetAllVenues;
 
 namespace Inventory.API.Controllers;
 
@@ -23,33 +20,33 @@ public class VenuesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<VenueDto>>> GetAll()
+    public async Task<ActionResult<IEnumerable<VenueResponse>>> GetAll()
     {
         var venues = await _mediator.Send(new GetAllVenuesQuery());
         return Ok(venues);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<VenueDto>> GetById(Guid id)
+    public async Task<ActionResult<VenueResponse>> GetById(Guid id)
     {
         var venue = await _mediator.Send(new GetVenueByIdQuery(id));
         return Ok(venue);
     }
 
     [HttpPost]
-    public async Task<ActionResult<VenueDto>> Create([FromBody] CreateVenueDto dto)
+    public async Task<ActionResult<VenueResponse>> Create([FromBody] CreateVenueResponse dto)
     {
         var command = new CreateVenueCommand
         {
-            Name = dto.Name,
-            Description = dto.Description,
-            Address = dto.Address,
-            City = dto.City,
-            State = dto.State,
-            ZipCode = dto.ZipCode,
-            Country = dto.Country,
-            Capacity = dto.Capacity,
-            IsActive = dto.IsActive
+            //Name = dto.Name,
+            //Description = dto.Description,
+            //Address = dto.Address,
+            //City = dto.City,
+            //State = dto.State,
+            //ZipCode = dto.ZipCode,
+            //Country = dto.Country,
+            //Capacity = dto.Capacity,
+            //IsActive = dto.IsActive
         };
 
         var venue = await _mediator.Send(command);
@@ -57,7 +54,7 @@ public class VenuesController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<VenueDto>> Update(Guid id, [FromBody] UpdateVenueDto dto)
+    public async Task<ActionResult<VenueResponse>> Update(Guid id, [FromBody] UpdateVenueResponse dto)
     {
         var command = new UpdateVenueCommand
         {
