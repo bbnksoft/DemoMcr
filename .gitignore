@@ -1,0 +1,27 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/REZsupport/copilot-chat/a993925d/sessions/b90215e1-947a-4b3d-8d39-94b41a7db5f7
+/.vs/REZsupport/CopilotIndices/17.13.444.19527/CodeChunks.db
+/.vs/REZsupport/CopilotIndices/17.13.444.19527/CodeChunks.db-shm
+/.vs/REZsupport/CopilotIndices/17.13.444.19527/CodeChunks.db-wal
+/.vs/REZsupport/CopilotIndices/17.13.444.19527/SemanticSymbols.db
+/.vs/REZsupport/CopilotIndices/17.13.444.19527/SemanticSymbols.db-shm
+/.vs/REZsupport/CopilotIndices/17.13.444.19527/SemanticSymbols.db-wal
+/.vs/REZsupport/DesignTimeBuild/.dtbcache.v2
+/.vs/REZsupport/FileContentIndex/022dd5b7-e946-4289-b22c-5ca9dfebe924.vsidx
+/.vs/REZsupport/FileContentIndex/33fcb002-2be7-46b3-9765-6609d330008a.vsidx
+/.vs/REZsupport/FileContentIndex/5f5cd59c-60a4-4823-a137-ffcf897b8e94.vsidx
+/.vs/REZsupport/FileContentIndex/7e908d71-a061-4a61-b9b6-85d35211f4ec.vsidx
+/.vs/REZsupport/FileContentIndex/991718d2-6d98-4a5b-bb2e-b8770ec13f43.vsidx
+/.vs/REZsupport/FileContentIndex/cfd3d6f6-3486-4979-994d-990927b9bf51.vsidx
+/.vs/REZsupport/FileContentIndex/d9426a7e-71d3-4808-99e1-85bba2ee5cac.vsidx
+/.vs/REZsupport/FileContentIndex/f19f9752-1964-47c8-9a62-400eef03fe1e.vsidx
+/.vs/REZsupport/v17/.futdcache.v2
+/.vs/REZsupport/v17/.suo
+/.vs/REZsupport/v17/DocumentLayout.backup.json
+/.vs/REZsupport/v17/DocumentLayout.json
+/.vs/ProjectEvaluation/rezsupport.metadata.v9.bin
+/.vs/ProjectEvaluation/rezsupport.projects.v9.bin
+/.vs/ProjectEvaluation/rezsupport.strings.v9.bin
