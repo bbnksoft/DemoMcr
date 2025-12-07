@@ -1,5 +1,8 @@
 using AutoMapper;
-using Inventory.Application.DTOs;
+using Inventory.Application.Responses.Products;
+using Inventory.Application.Responses.Sections;
+using Inventory.Application.Responses.Venues;
+using Inventory.Core.Entities;
 
 namespace Inventory.Application.Mappings;
 
@@ -8,18 +11,18 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         // Venue mappings
-        CreateMap<Core.Entities.Venue, VenueDto>();
-        CreateMap<CreateVenueDto, Core.Entities.Venue>();
-        CreateMap<UpdateVenueDto, Core.Entities.Venue>();
+        CreateMap<Venue, VenueResponse>();
+        CreateMap<CreateVenueResponse, Venue>();
+        CreateMap<UpdateVenueResponse, Venue>();
 
         // Section mappings
-        CreateMap<Core.Entities.Section, SectionDto>();
-        CreateMap<CreateSectionDto, Core.Entities.Section>();
-        CreateMap<UpdateSectionDto, Core.Entities.Section>();
+        CreateMap<Section, SectionResponse>();
+        CreateMap<CreateSectionResponse, Section>();
+        CreateMap<UpdateSectionResponse, Section>();
 
         // Product mappings
-        CreateMap<Core.Entities.Product, ProductDto>();
-        CreateMap<CreateProductDto, Core.Entities.Product>();
-        CreateMap<UpdateProductDto, Core.Entities.Product>();
+        CreateMap<Product, ProductResponse>();
+        CreateMap<CreateProductResponse, Product>();
+        CreateMap<UpdateProductResponse, Product>();
     }
 }

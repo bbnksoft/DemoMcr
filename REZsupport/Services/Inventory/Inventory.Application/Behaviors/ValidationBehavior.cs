@@ -1,6 +1,5 @@
 using FluentValidation;
 using MediatR;
-using Inventory.Core.Exceptions;
 
 namespace Inventory.Application.Behaviors;
 
