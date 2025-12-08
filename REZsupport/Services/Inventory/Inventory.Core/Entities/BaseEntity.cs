@@ -1,11 +1,32 @@
+using System.ComponentModel.DataAnnotations;
 namespace Inventory.Core.Entities;
 
+/// <summary>
+/// Base entity class that includes common properties for all entities.
+/// </summary>
 public abstract class BaseEntity
 {
-    public Guid Id { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime? UpdatedAt { get; set; }
+    /// <summary>
+    /// The date and time when the entity was created.
+    /// </summary>
+    [Required]
+    public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+
+    /// <summary>
+    /// The date and time when the entity was last modified.
+    /// </summary>
+    [Required]
+    public DateTime ModifiedDate { get; set; } = DateTime.UtcNow;
+
+    /// <summary>
+    /// The creator of the entity.    
+    /// </summary>
+    [MaxLength(450)]
     public string? CreatedBy { get; set; }
-    public string? UpdatedBy { get; set; }
-    public bool IsDeleted { get; set; }
+
+    /// <summary>
+    /// The modifier of the entity.        
+    /// </summary>
+    [MaxLength(450)]
+    public string? ModifiedBy { get; set; }
 }

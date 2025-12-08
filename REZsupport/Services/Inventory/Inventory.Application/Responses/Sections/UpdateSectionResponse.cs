@@ -1,11 +1,12 @@
 ﻿namespace Inventory.Application.Responses.Sections;
-public class UpdateSectionResponse
+
+/// <summary>
+/// Represents the response data for updating an existing section in a venue.
+/// </summary>
+public class UpdateSectionResponse : CreateSectionResponse
 {
-    public string Name { get; set; } = string.Empty;
-    public string? Description { get; set; }
-    public Guid VenueId { get; set; }
-    public int Capacity { get; set; }
-    public int RowCount { get; set; }
-    public string? SectionType { get; set; }
-    public bool IsActive { get; set; }
+    /// <summary>
+    /// Gets or sets the unique identifier of the section.
+    /// </summary>
+    public Guid SectionId { get; set; }
 }
