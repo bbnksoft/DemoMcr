@@ -10,32 +10,62 @@ namespace Inventory.API.Controllers;
 [Route("api/[controller]")]
 public class VenuesController : ControllerBase
 {
+    /// <summary>
+    /// The mediator instance for handling requests. 
+    /// </summary>
     private readonly IMediator _mediator;
+
+    /// <summary>
+    /// The logger instance for logging information and errors. 
+    /// </summary>
     private readonly ILogger<VenuesController> _logger;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="VenuesController"/> class. 
+    /// </summary>
+    /// <param name="mediator"></param>
+    /// <param name="logger"></param>
     public VenuesController(IMediator mediator, ILogger<VenuesController> logger)
     {
         _mediator = mediator;
         _logger = logger;
     }
 
+    /// <summary>
+    /// Gets all venues.
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<VenueResponse>>> GetAll()
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult<IEnumerable<VenueResponse>>> GetAllVenuesAsync()
     {
-        var venues = await _mediator.Send(new GetAllVenuesQuery());
-        return Ok(venues);
+        _logger.LogInformation("Getting all venues");
+
+        var query = new GetAllVenuesQuery();
+        var result = await _mediator.Send(query);
+
+        return Ok(result);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<VenueResponse>> GetById(Guid id)
+    public async Task<ActionResult<VenueResponse>> GetVenueByIdAsync(Guid id)
     {
-        var venue = await _mediator.Send(new GetVenueByIdQuery(id));
-        return Ok(venue);
+        _logger.LogInformation("Getting venue by ID: {VenueId}", id);
+
+        var query = new GetVenueByIdQuery(id);
+        var result = await _mediator.Send(query);
+        
+        return Ok(result);
     }
 
     [HttpPost]
-    public async Task<ActionResult<VenueResponse>> Create([FromBody] CreateVenueResponse dto)
+    public async Task<ActionResult<VenueResponse>> CreateVenue([FromBody] CreateVenueCommand command)
     {
+        _logger.LogInformation("Creating a new venue");
+
+        //var result = await _mediator.Send(command);
+        //return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+
         var command = new CreateVenueCommand
         {
             //Name = dto.Name,
@@ -54,7 +84,7 @@ public class VenuesController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<VenueResponse>> Update(Guid id, [FromBody] UpdateVenueResponse dto)
+    public async Task<ActionResult<VenueResponse>> UpdateVenue(Guid id, [FromBody] UpdateVenueResponse dto)
     {
         var command = new UpdateVenueCommand
         {
@@ -75,7 +105,7 @@ public class VenuesController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(Guid id)
+    public async Task<IActionResult> DeleteVenue(Guid id)
     {
         await _mediator.Send(new DeleteVenueCommand(id));
         return NoContent();

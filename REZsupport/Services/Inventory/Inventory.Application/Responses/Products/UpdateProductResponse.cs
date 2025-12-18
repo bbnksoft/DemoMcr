@@ -1,12 +1,12 @@
 ﻿namespace Inventory.Application.Responses.Products;
-public class UpdateProductResponse
+
+/// <summary>
+/// Represents the response data for updating an existing product in the inventory system.
+/// </summary>
+public class UpdateProductResponse : CreateProductResponse
 {
-    public string Name { get; set; } = string.Empty;
-    public string? Description { get; set; }
-    public Guid SectionId { get; set; }
-    public string? SKU { get; set; }
-    public decimal Price { get; set; }
-    public int AvailableQuantity { get; set; }
-    public string? ProductType { get; set; }
-    public bool IsActive { get; set; }
+    /// <summary>
+    /// Gets or sets the unique identifier of the product. 
+    /// </summary>
+    public Guid ProductId { get; set; }
 }

@@ -9,12 +9,6 @@ namespace Inventory.Core.Entities;
 public class Venue : BaseEntity
 {
     /// <summary>
-    /// The unique identifier for the venue.    
-    /// </summary>
-    [Key]
-    public Guid VenueId { get; set; } = Guid.NewGuid();
-
-    /// <summary>
     /// The unique identifier for the tenant that owns this venue. 
     /// </summary>
     [Required]

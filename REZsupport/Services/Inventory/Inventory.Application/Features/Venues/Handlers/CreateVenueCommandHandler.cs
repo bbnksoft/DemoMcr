@@ -21,8 +21,12 @@ public class CreateVenueCommandHandler : IRequestHandler<CreateVenueCommand, Ven
 
     public async Task<VenueResponse> Handle(CreateVenueCommand request, CancellationToken cancellationToken)
     {
-        var venue = new Venue
+        var venue = new Core.Entities.Venue
         {
+           Id = Guid.NewGuid(),
+           VenueName=request.VenueName,
+           VenueCode=request.
+             
             //VenueName = request.VenueName,
             //VenueType = request.VenueType,
             //Operator = request.Operator,
@@ -30,6 +34,10 @@ public class CreateVenueCommandHandler : IRequestHandler<CreateVenueCommand, Ven
             //Capacity = request.Capacity,
             //LocationData = request.LocationData
         };
+
+
+
+
 
         await _unitOfWork.Venues.AddAsync(venue, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);

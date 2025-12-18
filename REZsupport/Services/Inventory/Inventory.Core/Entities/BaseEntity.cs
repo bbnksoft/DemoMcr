@@ -6,6 +6,12 @@ namespace Inventory.Core.Entities;
 /// </summary>
 public abstract class BaseEntity
 {
+
+    /// <summary>
+    /// The unique identifier  
+    /// </summary>
+    public Guid Id { get; set; }
+
     /// <summary>
     /// The date and time when the entity was created.
     /// </summary>
